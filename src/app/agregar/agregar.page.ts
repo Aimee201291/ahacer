@@ -20,8 +20,6 @@ export class AgregarPage implements OnInit {
     let idLista = this.router.snapshot.paramMap.get('idLista');
     this.lista = this.listaService.obtenerLista(idLista);
     console.log(this.lista);
-    
-
    }
 
   ngOnInit() {
@@ -37,6 +35,14 @@ export class AgregarPage implements OnInit {
     this.listaService.guardarStorage();
     this.nombreItem = '';
     console.log(this.nombreItem);
+  }
+
+  editar(lista: Lista, actividad: Actividad) {
+    console.log("Editar ", lista, actividad);
+  }
+
+  borrar(actividad: Actividad) {
+    console.log("Eliminar ", actividad);
   }
 
 }
