@@ -46,6 +46,27 @@ export class ListaService {
     this.listas = objListas;
   } 
 
+  /**
+   * @function borrarLista
+   * @description Función que va a realizar la eliminación de una lista
+   * @param { Lista } lista la lista a eliminar
+   */
+  borrarLista(lista: Lista) {
+    let newLista = this.listas.filter((listaItem) => listaItem.id !== lista.id);
+    this.listas = newLista;
+    this.guardarStorage();
+  }
+
+  /**
+   * @function editarLista
+   * @description Función que va a realizar la edición de la lista pasada por parámetro
+   * @param { Lista } lista la lista a editar
+   */
+   editarLista(lista: Lista) {
+    let matchLista = this.listas.find((listaItem) => listaItem.id == lista.id);
+    matchLista.titulo = lista.titulo;
+    this.guardarStorage();
+  }
   
 
 }

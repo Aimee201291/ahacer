@@ -12,6 +12,6 @@ export class Lista {
         this.creadaEn = new Date();
         this.completada = false;
         this.item = [];
-        this.id = new Date().getDate();
+        this.id = new Date().getTime();
     }
 }

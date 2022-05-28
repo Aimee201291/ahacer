@@ -52,6 +52,45 @@ export class Tab1Page {
       await alerta.present();
       console.log("Click en el botón");
     }
+  
+    /**
+     * @function editarLista
+     * @description Función que será ejecutada cuando el usuario haga click en el botón editar
+     * Muestra una alerta donde solicita el nuevo nombre de la lista
+     */
+     async editarLista(lista: Lista) {
+      let alerta = await this.alertController.create({
+        header: "Editar lista",
+        inputs: [
+          {
+            type: "text",
+            name: "titulo",
+            placeholder: "Ingresar nombre de la lista",
+            value: lista.titulo
+          }
+        ],
+        buttons: [
+          {
+            text: "Cancelar",
+            role: "cancel"
+          },
+          {
+            text: "Editar",
+            handler: (data: any) => {
+              let isValid: boolean = this.validInput(data);
+              if (isValid) {
+                let titulo = data.titulo;
+                lista.titulo = titulo;
+                this.listaService.editarLista(lista);
+                this.presentToast('Lista editada correctamente');
+              }
+            }
+          }
+        ]
+      })
+      await alerta.present();
+      console.log("Click en el botón");
+    }
 
     /**
      * @function validInput
@@ -84,21 +123,21 @@ export class Tab1Page {
     }
 
     /**
-     * @function editarLista
-     * @description Función para editar la lista seleccionada
-     * @param { Lista } listaItem la lista a editar
-     */
-    editarLista(listaItem: Lista) {
-
-    }
-
-    /**
      * @function borrarLista
      * @description Función para eliminar la lista seleccionada
      * @param { Lista } listaItem la lista a eliminar
      */
      borrarLista(listaItem: Lista) {
+      this.listaService.borrarLista(listaItem);
+    }
 
+    /**
+     * @function actualizarLista
+     * @description Función para editar  la lista seleccionada
+     * @param { Lista } listaItem la lista a editar
+     */
+     actualizarLista(listaItem: Lista) {
+      this.editarLista(listaItem);
     }
 
 }
