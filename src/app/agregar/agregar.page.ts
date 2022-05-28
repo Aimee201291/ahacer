@@ -45,4 +45,16 @@ export class AgregarPage implements OnInit {
     console.log("Eliminar ", actividad);
   }
 
+  cambioCheck() {
+    const pendientes = this.lista.item.filter(item => item.completado == false).length;
+    if (pendientes == 0) {
+      this.lista.completada = true;
+      this.lista.terminadaEn = new Date();
+    } else {
+      this.lista.completada = false;
+      this.lista.terminadaEn = null;
+    }
+    this.listaService.guardarStorage();
+  }
+
 }

@@ -27,7 +27,7 @@
     </ion-list-header>
     <ion-item-sliding *ngFor="let actividad of lista.item">
       <ion-item>
-        <ion-checkbox slot="start"></ion-checkbox>
+        <ion-checkbox slot="start" [(ngModel)]="actividad.completado" (ionChange)="cambioCheck()"></ion-checkbox>
         {{ actividad.descripcion }}
       </ion-item>
       <ion-item-options side="start">
