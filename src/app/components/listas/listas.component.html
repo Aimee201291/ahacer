@@ -1,6 +1,6 @@
 <ion-list>
   <ion-item-sliding *ngFor="let listaItem of listaService.listas">
-    <ion-item>
+    <ion-item (click)="listaSeleccionada(listaItem)">
       <ion-label>{{ listaItem.titulo }}</ion-label>
     </ion-item>
     <ion-item-options side="start">

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ListaService } from '../../services/lista.service';
 import { AlertController, ToastController } from '@ionic/angular';
 import { Lista } from '../../models/lista.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listas',
@@ -12,7 +13,8 @@ export class ListasComponent implements OnInit {
 
   constructor(public listaService: ListaService,
     public alertController: AlertController,
-    public toastController: ToastController) { }
+    public toastController: ToastController,
+    public router: Router) { }
 
   ngOnInit() {}
 
@@ -94,12 +96,18 @@ export class ListasComponent implements OnInit {
         this.listaService.borrarLista(listaItem);
       }
     
-      /**
-       * @function actualizarLista
-       * @description Función para editar  la lista seleccionada
-       * @param { Lista } listaItem la lista a editar
-       */
-        actualizarLista(listaItem: Lista) {
-        this.editarLista(listaItem);
-      }
+    /**
+     * @function actualizarLista
+     * @description Función para editar  la lista seleccionada
+     * @param { Lista } listaItem la lista a editar
+     */
+      actualizarLista(listaItem: Lista) {
+      this.editarLista(listaItem);
+    }
+
+    listaSeleccionada(listaItem: Lista) {
+      console.log(listaItem);
+      const URL = '/agregar/'+listaItem.id;
+      this.router.navigateByUrl(URL);
+    }
 }
