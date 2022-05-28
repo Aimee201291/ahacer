@@ -67,6 +67,17 @@ export class ListaService {
     matchLista.titulo = lista.titulo;
     this.guardarStorage();
   }
+
+  /**
+   * @function editarLista
+   * @description Función que va a realizar la edición de la lista pasada por parámetro
+   * @param { Lista } lista la lista a editar
+   */
+   obtenerLista(idLista: string | number) {
+    const id = Number(idLista);
+    let lista = this.listas.find((itemLista) => itemLista.id == id);
+    return lista;
+  }
   
 
 }
