@@ -14,7 +14,7 @@ export class LoginPage implements OnInit {
   }
 
   iniciarSesion() {
-    const URL = '/tabs';
+    const URL = 'tabs';
     this.router.navigateByUrl(URL);
   }
 
